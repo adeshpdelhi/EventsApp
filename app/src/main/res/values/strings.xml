@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Events App</string>
+    <string name="pick_account">Please pick an account to login!</string>
+    <string name="not_online">Internet not working!</string>
+</resources>
