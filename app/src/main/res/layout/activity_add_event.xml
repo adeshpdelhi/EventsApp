@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+
+    tools:context="com.example.rishabh.mc_project.AddEventActivity"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Name :       "
+            android:layout_gravity="center"
+            />
+        <EditText
+            android:id="@+id/event_name"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="Event Name"
+            android:inputType="text" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Club :      "
+            android:layout_gravity="center"
+            />
+        <Spinner
+            android:id="@+id/event_club"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Date :          "
+            android:layout_gravity="center"
+            />
+        <EditText
+            android:id="@+id/event_date"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="Date"
+            android:onClick="setDate"
+            android:focusable="false"/>
+    </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="From :         "
+                android:layout_gravity="center"
+                />
+            <EditText
+                android:id="@+id/event_time_from"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:hint="Starting Time"
+                android:onClick="setTimeFrom"
+                android:focusable="false"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="To :             "
+                android:layout_gravity="center"
+                />
+            <EditText
+                android:id="@+id/event_time_to"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:hint="End Time"
+                android:onClick="setTimeTo"
+                android:focusable="false"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="About :       "
+                android:layout_gravity="center"
+                />
+            <EditText
+                android:id="@+id/event_description"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:hint="Short Description of Event"
+                android:inputType="textMultiLine"
+
+                android:minLines="4"
+                android:gravity="top|left"
+                android:maxLines="4"
+                android:scrollbars="vertical" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Organisers : "
+                android:layout_gravity="center"
+                />
+            <EditText
+                android:id="@+id/event_organisers"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:hint="Name and emailID(Seperate Lines)"
+                android:inputType="textMultiLine"
+                android:minLines="2"
+                android:gravity="top|left"
+                android:maxLines="10"
+                android:scrollbars="vertical" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add Event"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/activity_horizontal_margin"
+            android:onClick="addEvent"/>
+
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>
