@@ -1,5 +1,4 @@
-package com.example.rishabh.mc_project;
-
+package com.creation.events.eventsapp;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;

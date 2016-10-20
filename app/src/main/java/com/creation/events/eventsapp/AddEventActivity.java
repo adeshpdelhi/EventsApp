@@ -1,4 +1,4 @@
-package com.example.rishabh.mc_project;
+package com.creation.events.eventsapp;
 
 import android.content.Intent;
 import android.support.v4.app.DialogFragment;

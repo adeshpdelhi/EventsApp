@@ -1,5 +1,4 @@
-package com.example.rishabh.mc_project;
-
+package com.creation.events.eventsapp;
 import android.content.Context;
 
         import android.content.Context;
