@@ -30,6 +30,7 @@ public class AddEventActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_event);
+        getSupportActionBar().setTitle("Add Event");
         string_time_from="";
         string_time_to=null;
 

@@ -23,7 +23,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Name :       "
+            android:text="NAME :            "
             android:layout_gravity="center"
             />
         <EditText
@@ -31,7 +31,9 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:hint="Event Name"
-            android:inputType="text" />
+            android:background="#f3f3f3"
+            android:inputType="text"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="fill_parent"
@@ -39,14 +41,18 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Club :      "
+            android:text="CLUB :              "
             android:layout_gravity="center"
             />
         <Spinner
             android:id="@+id/event_club"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            />
+            android:background="#f3f3f3"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+
+        />
+
     </LinearLayout>
 
     <LinearLayout
@@ -55,34 +61,53 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Date :          "
+            android:text="DATE :               "
             android:layout_gravity="center"
             />
+
         <EditText
             android:id="@+id/event_date"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:hint="Date"
+            android:background="#f3f3f3"
             android:onClick="setDate"
-            android:focusable="false"/>
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"/>
     </LinearLayout>
-
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TIME OF EVENT"
+        android:gravity="center"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        />
+</LinearLayout>
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="From :         "
+                android:text="FROM :              "
                 android:layout_gravity="center"
                 />
             <EditText
                 android:id="@+id/event_time_from"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:background="#f3f3f3"
                 android:hint="Starting Time"
                 android:onClick="setTimeFrom"
-                android:focusable="false"/>
+
+                android:focusableInTouchMode="false"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+            />
         </LinearLayout>
 
         <LinearLayout
@@ -91,7 +116,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="To :             "
+                android:text="TO :                     "
                 android:layout_gravity="center"
                 />
             <EditText
@@ -99,8 +124,11 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:hint="End Time"
+                android:background="#f3f3f3"
                 android:onClick="setTimeTo"
-                android:focusable="false"/>
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="fill_parent"
@@ -108,20 +136,22 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="About :       "
+                android:text="ABOUT :             "
                 android:layout_gravity="center"
                 />
             <EditText
                 android:id="@+id/event_description"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:hint="Short Description of Event"
+                android:hint="Description of Event"
+                android:background="#f3f3f3"
                 android:inputType="textMultiLine"
-
                 android:minLines="4"
                 android:gravity="top|left"
                 android:maxLines="4"
-                android:scrollbars="vertical" />
+                android:scrollbars="vertical"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"/>
         </LinearLayout>
 
         <LinearLayout
@@ -130,16 +160,17 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Organisers : "
+                android:text="ORGANISERS  : "
                 android:layout_gravity="center"
                 />
             <EditText
                 android:id="@+id/event_organisers"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:hint="Name and emailID(Seperate Lines)"
+                android:hint="Name and EmailID"
                 android:inputType="textMultiLine"
                 android:minLines="2"
+                android:background="#f3f3f3"
                 android:gravity="top|left"
                 android:maxLines="10"
                 android:scrollbars="vertical" />
