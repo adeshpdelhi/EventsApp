@@ -3,6 +3,7 @@
     <string name="pick_account">Please pick an account to login!</string>
     <string name="not_online">Internet not working!</string>
     <string name="sign_out">Sign Out</string>
+    <string name="add_event">Add Event</string>
 	<string-array name="clubs_array">
         <item>club1</item>
         <item>club2</item>

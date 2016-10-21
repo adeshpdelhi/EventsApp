@@ -3,6 +3,7 @@ package com.creation.events.eventsapp;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.nfc.Tag;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentManager;
@@ -29,10 +30,8 @@ import java.util.ArrayList;
  * Created by Rishabh on 10/15/2016.
  */
 public class HomeActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener{
-    GoogleApiClient mGoogleApiClient;
-    GoogleSignInAccount googleAccount;
     public static final String TAG= "HomeActivity";
-
+    GoogleApiClient mGoogleApiClient;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
@@ -43,7 +42,9 @@ public class HomeActivity extends AppCompatActivity implements GoogleApiClient.O
                 .enableAutoManage(this /* FragmentActivity */, this /* OnConnectionFailedListener */)
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
-        User user = (User) getIntent().getSerializableExtra("user");
+        SharedPreferences sharedPref = this.getSharedPreferences("loggedInUser", Context.MODE_PRIVATE);
+        User user = new User(sharedPref.getString("username",null),sharedPref.getString("email",null));
+        Log.v(TAG, "Username is "+user.getName().toString());
         getSupportActionBar().setTitle("Events");
         populateEventsList();
     }
@@ -61,6 +62,9 @@ public class HomeActivity extends AppCompatActivity implements GoogleApiClient.O
         {
             case R.id.signoutoption:
                 signOut();
+                return true;
+            case R.id.addeventoption:
+                GotoAddEvent();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -82,10 +86,10 @@ public class HomeActivity extends AppCompatActivity implements GoogleApiClient.O
         ListView listView = (ListView) findViewById(R.id.allEvents);
         listView.setAdapter(adapter);
     }
-    public void GotoAddEvent(View view)
+    public void GotoAddEvent()
     {
         Intent intent = new Intent(this, AddEventActivity.class);
-        int requestCode = 10;
+//        int requestCode = 10;
         // intent.putExtra("requestCode", requestCode);
         //intent.putExtra("username", username);
         startActivity(intent);

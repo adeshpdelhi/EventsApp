@@ -67,6 +67,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
             SharedPreferences sharedPref = this.getSharedPreferences("loggedInUser", Context.MODE_PRIVATE);
             SharedPreferences.Editor sharedEditor = sharedPref.edit();
             sharedEditor.putString("username", googleAccount.getDisplayName());
+            sharedEditor.putString("email", googleAccount.getEmail());
             sharedEditor.commit();
             User user = new User(googleAccount.getDisplayName(),googleAccount.getEmail());
             Intent i = new Intent(this,HomeActivity.class);
