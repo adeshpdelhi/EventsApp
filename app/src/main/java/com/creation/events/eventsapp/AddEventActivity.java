@@ -29,7 +29,7 @@ public class AddEventActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_event1);
+        setContentView(R.layout.activity_add_event);
         getSupportActionBar().setTitle("Add Event");
         string_time_from="";
         string_time_to=null;
@@ -149,7 +149,7 @@ public void setDate(View view)
 
 
 
-        if(b_name && b_club && b_date && b_time_from && b_time_to&& b_description && b_organisers)
+        if(b_name && b_club && b_date && b_time_from && b_time_to && b_description && b_organisers)
         {
             Log.d(TAG,name);
             Log.d(TAG,club);
