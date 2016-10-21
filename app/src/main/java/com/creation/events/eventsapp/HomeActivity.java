@@ -1,13 +1,31 @@
 package com.creation.events.eventsapp;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.nfc.Tag;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
+
+
+import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.common.api.Status;
+
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -15,14 +33,54 @@ import java.util.Objects;
 /**
  * Created by Rishabh on 10/15/2016.
  */
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener{
+    public static final String TAG= "HomeActivity";
+    GoogleApiClient mGoogleApiClient;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build();
+        mGoogleApiClient = new GoogleApiClient.Builder(this)
+                .enableAutoManage(this /* FragmentActivity */, this /* OnConnectionFailedListener */)
+                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
+                .build();
+        SharedPreferences sharedPref = this.getSharedPreferences("loggedInUser", Context.MODE_PRIVATE);
+        User user = new User(sharedPref.getString("username",null),sharedPref.getString("email",null));
+        Log.v(TAG, "Username is "+user.getName().toString());
         getSupportActionBar().setTitle("Events");
         populateEventsList();
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.home_menu, menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch(item.getItemId())
+        {
+            case R.id.signoutoption:
+                signOut();
+                return true;
+            case R.id.addeventoption:
+                GotoAddEvent();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+    @Override
+    public void onConnectionFailed(ConnectionResult connectionResult) {
+        // An unresolvable error has occurred and Google APIs (including Sign-In) will not
+        // be available.
+        Log.d(TAG, "onConnectionFailed:" + connectionResult);
+    }
 
     private void populateEventsList() {
         // Construct the data source
@@ -57,25 +115,27 @@ public class HomeActivity extends AppCompatActivity {
     }
 
 
-   /* public void onItemClick(ListView listView, View view, int position, long id) {
-       // ListView myListView = getListView();
-        Event e = (Event)listView.getAdapter().getItem(position);
-        Toast.makeText(getApplicationContext(), "Item Clicked: ",Toast.LENGTH_SHORT).show();
-     //  Event e = (Event)parent.getAdapter().getItem(position);
 
-       Intent intent = new Intent(HomeActivity.this,EventDetails.class);
-       // pass the item information
-       Bundle b=new Bundle();
-       b.putSerializable("event",e);
-       intent.putExtras(b);
-       startActivity(intent);
-    } */
-    public void GotoAddEvent(View view)
+    public void GotoAddEvent()
     {
         Intent intent = new Intent(this, AddEventActivity.class);
-        int requestCode = 10;
-        // intent.putExtra("requestCode", requestCode);
-        //intent.putExtra("username", username);
         startActivity(intent);
+    }
+    public void signOut() {
+        Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(
+
+                new ResultCallback<Status>() {
+                    @Override
+                    public void onResult(Status status) {
+                        SharedPreferences sharedPref = getApplicationContext().getSharedPreferences("loggedInUser", Context.MODE_PRIVATE);
+                        SharedPreferences.Editor sharedEditor = sharedPref.edit();
+                        sharedEditor.putString("username", null);
+                        sharedEditor.commit();
+                        Toast.makeText(getApplicationContext(),"Sign out successful",Toast.LENGTH_LONG).show();
+                        Intent i = new Intent(getApplicationContext(), LoginActivity.class);
+                        startActivity(i);
+                        finish();
+                    }
+                });
     }
 }
