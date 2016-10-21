@@ -4,12 +4,15 @@
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_width="match_parent"
+        android:layout_height="40sp"
+        android:orientation="horizontal"
+        android:background="@drawable/view_event_item_background"
+        android:layout_margin="10sp">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="10sp"
             android:text="Name :                 "
             android:layout_gravity="center"
             />
@@ -18,18 +21,22 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:hint="myname"
             />
     </LinearLayout>
 
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="40sp"
+        android:layout_margin="10sp"
+        android:background="@drawable/view_event_item_background">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Club :           "
+            android:text="Club :                    "
+            android:layout_margin="10sp"
             android:layout_gravity="center"
             />
         <TextView
@@ -37,17 +44,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:hint="myclub"
             />
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="40sp"
+        android:layout_margin="10sp"
+        android:background="@drawable/view_event_item_background">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Date :           "
+            android:layout_margin="10sp"
+            android:text="Date :                    "
             android:layout_gravity="center"
             />
         <TextView
@@ -55,17 +66,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:hint="date"
             />
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="40sp"
+        android:layout_margin="10sp"
+        android:background="@drawable/view_event_item_background">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="From :           "
+            android:layout_margin="10sp"
+            android:text="From :                    "
             android:layout_gravity="center"
             />
         <TextView
@@ -73,17 +88,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:hint="date"
             />
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="40sp"
+        android:layout_margin="10sp"
+        android:background="@drawable/view_event_item_background">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="To :           "
+            android:layout_margin="10sp"
+            android:text="To :                        "
             android:layout_gravity="center"
             />
         <TextView
@@ -91,17 +110,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:hint="myclub"
             />
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="40sp"
+        android:layout_margin="10sp"
+        android:background="@drawable/view_event_item_background">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Description        "
+            android:layout_margin="10sp"
+            android:text="Description            "
             android:layout_gravity="center"
             />
         <TextView
@@ -109,17 +132,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:hint="myclub"
             />
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="40sp"
+        android:layout_margin="10sp"
+        android:background="@drawable/view_event_item_background">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Organisers :        "
+            android:layout_margin="10sp"
+            android:text="Organisers :            "
             android:layout_gravity="center"
             />
         <TextView
@@ -127,6 +154,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:hint="myclub"
             />
     </LinearLayout>
 
