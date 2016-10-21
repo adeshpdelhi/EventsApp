@@ -103,8 +103,7 @@ public class HomeActivity extends AppCompatActivity implements GoogleApiClient.O
             @Override
             public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
 
-                Toast.makeText(getApplicationContext(), "Item clicked",
-                        Toast.LENGTH_SHORT).show();
+
 
                 Event e = (Event)parent.getAdapter().getItem(position);
 
