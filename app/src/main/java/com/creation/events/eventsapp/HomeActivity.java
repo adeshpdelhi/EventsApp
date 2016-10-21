@@ -103,6 +103,7 @@ public class HomeActivity extends AppCompatActivity implements GoogleApiClient.O
                         SharedPreferences sharedPref = getApplicationContext().getSharedPreferences("loggedInUser", Context.MODE_PRIVATE);
                         SharedPreferences.Editor sharedEditor = sharedPref.edit();
                         sharedEditor.putString("username", null);
+                        sharedEditor.putString("email", null);
                         sharedEditor.commit();
                         Toast.makeText(getApplicationContext(),"Sign out successful",Toast.LENGTH_LONG).show();
                         Intent i = new Intent(getApplicationContext(), LoginActivity.class);
