@@ -48,7 +48,7 @@ public class HomeActivity extends AppCompatActivity implements GoogleApiClient.O
                 .build();
         SharedPreferences sharedPref = this.getSharedPreferences("loggedInUser", Context.MODE_PRIVATE);
         User user = new User(sharedPref.getString("username",null),sharedPref.getString("email",null));
-        Log.v(TAG, "Username is "+user.getName().toString());
+       // Log.v(TAG, "Username is "+user.getName().toString());
         getSupportActionBar().setTitle("Events");
         populateEventsList();
     }

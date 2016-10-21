@@ -7,6 +7,6 @@
     <color name="yellowColour">#FFFF00</color>
     <color name="whiteColour">#FFFFFF</color>
     <color name="blackColour">#000000</color>
-    <color name="faintblue">#e6ffff</color>
+    <color name="faintblue">#BBBBFF</color>
 
 </resources>
