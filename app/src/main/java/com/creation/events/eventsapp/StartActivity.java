@@ -19,7 +19,7 @@ public class StartActivity extends AppCompatActivity {
             intentForSubsequentActivity = new Intent(this,LoginActivity.class);
         }
         else{
-            intentForSubsequentActivity = new Intent(this,LoginActivity.class);
+            intentForSubsequentActivity = new Intent(this,HomeActivity.class);
         }
 
         startActivity(intentForSubsequentActivity);

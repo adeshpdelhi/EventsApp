@@ -1,6 +1,8 @@
 package com.creation.events.eventsapp;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -62,12 +64,17 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
             // Signed in successfully, show authenticated UI.
             googleAccount = result.getSignInAccount();
             Toast.makeText(this,"Successful "+googleAccount.getDisplayName()+" "+googleAccount.getEmail(),Toast.LENGTH_LONG).show();
+            SharedPreferences sharedPref = this.getSharedPreferences("loggedInUser", Context.MODE_PRIVATE);
+            SharedPreferences.Editor sharedEditor = sharedPref.edit();
+            sharedEditor.putString("username", googleAccount.getDisplayName());
+            sharedEditor.commit();
             User user = new User(googleAccount.getDisplayName(),googleAccount.getEmail());
             Intent i = new Intent(this,HomeActivity.class);
             Bundle b = new Bundle();
             b.putSerializable("user",user);
             i.putExtras(b);
             startActivity(i);
+            finish();
         } else {
             // Signed out, show unauthenticated UI.
             Toast.makeText(this,"Not authenticated!",Toast.LENGTH_LONG).show();
@@ -82,9 +89,14 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
 
     public void signOut(View view) {
         Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(
+
                 new ResultCallback<Status>() {
                     @Override
                     public void onResult(Status status) {
+                        SharedPreferences sharedPref = getApplicationContext().getSharedPreferences("loggedInUser", Context.MODE_PRIVATE);
+                        SharedPreferences.Editor sharedEditor = sharedPref.edit();
+                        sharedEditor.putString("username", null);
+                        sharedEditor.commit();
                         Toast.makeText(LoginActivity.this,"Sign out successful",Toast.LENGTH_LONG).show();
                     }
                 });
