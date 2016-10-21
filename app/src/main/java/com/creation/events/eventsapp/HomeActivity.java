@@ -120,6 +120,7 @@ public class HomeActivity extends AppCompatActivity implements GoogleApiClient.O
     {
         Intent intent = new Intent(this, AddEventActivity.class);
         startActivity(intent);
+        populateEventsList();
     }
     public void signOut() {
         Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(

@@ -169,12 +169,12 @@ public void setDate(View view)
                 text_name.setText("");
                 //text_.setText("");
 
-                Intent intent = new Intent(this, HomeActivity.class);
-                int requestCode = 10;
+//                Intent intent = new Intent(this, HomeActivity.class);
+//                int requestCode = 10;
                 // intent.putExtra("requestCode", requestCode);
                 //intent.putExtra("username", username);
-                startActivity(intent);
-
+//                startActivity(intent);
+                finish();
             }
         }
         else
