@@ -3,12 +3,13 @@ import android.app.DatePickerDialog;
 import android.widget.DatePicker;
 import android.widget.TimePicker;
 
+import java.io.Serializable;
 import java.sql.Date;
 
 /**
  * Created by Rishabh on 10/15/2016.
  */
-public class Event {
+public class Event implements Serializable {
 
     public String name;
     public String date;

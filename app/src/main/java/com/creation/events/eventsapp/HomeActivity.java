@@ -13,8 +13,10 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
+
 
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -24,7 +26,9 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 
+
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  * Created by Rishabh on 10/15/2016.
@@ -48,6 +52,7 @@ public class HomeActivity extends AppCompatActivity implements GoogleApiClient.O
         getSupportActionBar().setTitle("Events");
         populateEventsList();
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
@@ -76,6 +81,7 @@ public class HomeActivity extends AppCompatActivity implements GoogleApiClient.O
         // be available.
         Log.d(TAG, "onConnectionFailed:" + connectionResult);
     }
+
     private void populateEventsList() {
         // Construct the data source
         EventDB mydb=new EventDB(this);
@@ -83,15 +89,36 @@ public class HomeActivity extends AppCompatActivity implements GoogleApiClient.O
         // Create the adapter to convert the array to views
         EventsAdapter adapter = new EventsAdapter(this, arrayOfEvents);
         // Attach the adapter to a ListView
-        ListView listView = (ListView) findViewById(R.id.allEvents);
+        ListView listView = (ListView) findViewById(R.id.list);
         listView.setAdapter(adapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
+
+                Toast.makeText(getApplicationContext(), "Item clicked",
+                        Toast.LENGTH_SHORT).show();
+
+                Event e = (Event)parent.getAdapter().getItem(position);
+
+                Intent intent = new Intent(HomeActivity.this,EventDetailsActivity.class);
+                // pass the item information
+                Bundle b=new Bundle();
+                b.putSerializable("event",e);
+                intent.putExtras(b);
+                startActivity(intent);
+
+                /* Here instead Toast I want to show details of each Tutorial Topic in another fragment. */
+            }
+        });
+
     }
+
+
+
     public void GotoAddEvent()
     {
         Intent intent = new Intent(this, AddEventActivity.class);
-//        int requestCode = 10;
-        // intent.putExtra("requestCode", requestCode);
-        //intent.putExtra("username", username);
         startActivity(intent);
     }
     public void signOut() {
