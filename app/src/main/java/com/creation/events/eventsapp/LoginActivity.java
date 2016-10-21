@@ -14,6 +14,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
@@ -29,6 +30,8 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        //signInButton.setScopes(gso.getScopeArray());
         // Configure sign-in to request the user's ID, email address, and basic
 // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -88,19 +91,5 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         Log.d(TAG, "onConnectionFailed:" + connectionResult);
     }
 
-    public void signOut(View view) {
-        Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(
-
-                new ResultCallback<Status>() {
-                    @Override
-                    public void onResult(Status status) {
-                        SharedPreferences sharedPref = getApplicationContext().getSharedPreferences("loggedInUser", Context.MODE_PRIVATE);
-                        SharedPreferences.Editor sharedEditor = sharedPref.edit();
-                        sharedEditor.putString("username", null);
-                        sharedEditor.commit();
-                        Toast.makeText(LoginActivity.this,"Sign out successful",Toast.LENGTH_LONG).show();
-                    }
-                });
-    }
 
 }
