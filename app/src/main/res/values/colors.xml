@@ -6,5 +6,7 @@
     <color name="redColour">#FF4C4C</color>
     <color name="yellowColour">#FFFF00</color>
     <color name="whiteColour">#FFFFFF</color>
+    <color name="blackColour">#000000</color>
+    <color name="faintblue">#e6ffff</color>
 
 </resources>

@@ -1,133 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="150sp"
+    android:background="@drawable/viewback">
 
-    <LinearLayout
+
+    <TextView
+        android:id="@+id/viewAllEvents_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Name :                 "
-            android:layout_gravity="center"
-            />
-        <TextView
-            android:id="@+id/viewAllEvents_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            />
-    </LinearLayout>
+        android:layout_margin="20sp"
+        android:textSize="60sp"
+        android:gravity="center"
+        android:layout_centerHorizontal="true"
+        android:hint="name"
+        />
 
-
-    <LinearLayout
+    <TextView
+        android:id="@+id/viewAllEvents_club"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Club :           "
-            android:layout_gravity="center"
-            />
-        <TextView
-            android:id="@+id/viewAllEvents_club"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            />
-    </LinearLayout>
+        android:textSize="20sp"
+        android:hint="club"
+        android:layout_margin="20sp"
+        android:layout_alignParentBottom="true"
+        />
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/viewAllEvents_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Date :           "
-            android:layout_gravity="center"
-            />
-        <TextView
-            android:id="@+id/viewAllEvents_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            />
-    </LinearLayout>
+        android:hint="date"
+        android:layout_margin="20sp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        />
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="From :           "
-            android:layout_gravity="center"
-            />
-        <TextView
-            android:id="@+id/viewAllEvents_time_from"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            />
-    </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="To :           "
-            android:layout_gravity="center"
-            />
-        <TextView
-            android:id="@+id/viewAllEvents_time_to"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            />
-    </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Description        "
-            android:layout_gravity="center"
-            />
-        <TextView
-            android:id="@+id/viewAllEvents_description"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Organisers :        "
-            android:layout_gravity="center"
-            />
-        <TextView
-            android:id="@+id/viewAllEvents_organisers"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            />
-    </LinearLayout>
-
-</LinearLayout>
+</RelativeLayout>

@@ -52,6 +52,13 @@ public class HomeActivity extends AppCompatActivity implements GoogleApiClient.O
         getSupportActionBar().setTitle("Events");
         populateEventsList();
     }
+    @Override
+    protected  void onResume(){
+        super.onResume();
+        populateEventsList();
+    }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -103,7 +110,7 @@ public class HomeActivity extends AppCompatActivity implements GoogleApiClient.O
 
                 Intent intent = new Intent(HomeActivity.this,EventDetailsActivity.class);
                 // pass the item information
-                Bundle b=new Bundle();
+                Bundle b = new Bundle();
                 b.putSerializable("event",e);
                 intent.putExtras(b);
                 startActivity(intent);

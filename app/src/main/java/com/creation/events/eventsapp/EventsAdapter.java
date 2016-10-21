@@ -30,20 +30,11 @@ public class EventsAdapter extends ArrayAdapter<Event> {
         TextView aName = (TextView) convertView.findViewById(R.id.viewAllEvents_name);
         TextView aClub = (TextView) convertView.findViewById(R.id.viewAllEvents_club);
         TextView aDate = (TextView) convertView.findViewById(R.id.viewAllEvents_date);
-        TextView atime_from = (TextView) convertView.findViewById(R.id.viewAllEvents_time_from);
-        TextView atime_to = (TextView) convertView.findViewById(R.id.viewAllEvents_time_to);
-        TextView aDescription = (TextView) convertView.findViewById(R.id.viewAllEvents_description);
-        TextView aOrganisers = (TextView) convertView.findViewById(R.id.viewAllEvents_organisers);
 
         // Populate the data into the template view using the data object
         aName.setText(event.name);
         aClub.setText(event.club);
         aDate.setText(event.date);
-        atime_from.setText(event.time_from);
-        atime_to.setText(event.time_to);
-        aDescription.setText(event.description);
-        aOrganisers.setText(event.organisers);
-
 
 
         // Return the completed view to render on screen
