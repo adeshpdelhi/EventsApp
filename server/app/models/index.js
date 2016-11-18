@@ -32,7 +32,7 @@ dbmodel.sequelize = db.sequelize;
 dbmodel.Sequelize = db.Sequelize;
 
 dbmodel.clubs.hasMany(dbmodel.events,{foreignKey:'eventId', constraints:false});
-dbmodel.events.belongsTo(dbmodel.clubs,{foreignKey:'eventId', constraints: true});
+dbmodel.events.belongsTo(dbmodel.clubs,{foreignKey:'eventId', constraints: false});
 
 // dbmodel.clubs.belongsToMany(dbmodel.users,{through:'clubs_users',foreignKey:'subscribers', constraints: true});
 // dbmodel.users.belongsToMany(dbmodel.clubs,{through:'clubs_users',foreignKey:'subscribed_clubs', constraints: true});

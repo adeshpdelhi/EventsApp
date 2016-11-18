@@ -12,6 +12,9 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.STRING,
             allowNull: false,
           },
+          details:{
+          	type: DataTypes.STRING
+          },
           // admins: {
           //   type: DataTypes.STRING,
           //   references:{

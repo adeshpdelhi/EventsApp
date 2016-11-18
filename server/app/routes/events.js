@@ -6,8 +6,18 @@ eventRouter.route('/')
 .get(function (req, res, next) {
     console.log('procesing get');
     db.events.findAll({
-        include: [
-            db.clubs
+        include: [{
+                model: db.clubs
+            },{
+                model: db.users,
+                as: 'Admins',
+                attributes: ['email','name']
+            },
+            {
+                model: db.users,
+                as: 'Subscribers',
+                attributes: ['email']
+            }
         ]
     }).then(function(events){
         console.log(JSON.stringify(events));
@@ -81,8 +91,18 @@ eventRouter.route('/:eventId')
         where:{
             eventId:req.params.eventId
         },
-        include: [
-            db.clubs
+        include: [{
+                model: db.clubs
+            },{
+                model: db.users,
+                as: 'Admins',
+                attributes: ['email', 'name']
+            },
+            {
+                model: db.users,
+                as: 'Subscribers',
+                attributes: ['email']
+            }
         ]
     }).then(function(event){
         console.log(JSON.stringify(event));

@@ -8,7 +8,15 @@ clubRouter.route('/')
     db.clubs.findAll({
         include:[{
                 model: db.events,
-                
+            },{
+                model: db.users,
+                as: 'Admins',
+                attributes: ['email','name']
+            },
+            {
+                model: db.users,
+                as: 'Subscribers',
+                attributes: ['email']
             }
         ]
     }).then(function(clubs){
@@ -51,6 +59,15 @@ clubRouter.route('/:clubId')
         },
         include:[{
                 model: db.events,
+            },{
+                model: db.users,
+                as: 'Admins',
+                attributes: ['email','name']
+            },
+            {
+                model: db.users,
+                as: 'Subscribers',
+                attributes: ['email']
             }
         ]
     }).then(function(club){

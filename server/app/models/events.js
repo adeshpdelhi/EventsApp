@@ -4,8 +4,6 @@ module.exports = function(sequelize, DataTypes) {
           eventId: {
             type: DataTypes.BIGINT,
             autoIncrement: true,
-            allowNull: false,
-            unique: true,
             primaryKey: true
           },
           name: {
