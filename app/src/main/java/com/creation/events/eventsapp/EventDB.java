@@ -98,13 +98,13 @@ public class EventDB extends SQLiteOpenHelper {
         return true;
     }*/
 
-   /* public Integer deleteUser(String username)
+    public Integer deleteEvent(String eventname)
     {
         SQLiteDatabase db = this.getWritableDatabase();
-        return db.delete("users",
-                "username = ? ",
-                new String[] { username });
-    }*/
+        return db.delete(EVENTS_TABLE_NAME,
+                EVENTS_COLUMN_NAME+" = ? ",
+                new String[] { eventname });
+    }
 
     public ArrayList<Event> getAllEvents()
     {

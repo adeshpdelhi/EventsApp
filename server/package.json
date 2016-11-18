@@ -1,0 +1,30 @@
+{
+  "name": "EventsApp",
+  "description": "Manage yuor events!",
+  "version": "0.0.0",
+  "private": true,
+  "author": "IIITD",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/adeshpdelhi/EventsApp.git"
+  },
+  "scripts": {
+    "start": "node ./config/bin/www",
+    "start refresh": "node ./config/bin/www refresh"
+  },
+  "dependencies": {
+    "bcrypt": "^0.8.7",
+    "body-parser": "~1.13.2",
+    "cookie-parser": "~1.3.5",
+    "debug": "~2.2.0",
+    "express": "~4.13.1",
+    "morgan": "~1.6.1",
+    "mysql": "^2.11.1",
+    "sequelize": "^3.23.4",
+    "serve-favicon": "~2.3.0",
+    "express-session": "^1.14.0"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  }
+}

@@ -3,17 +3,19 @@ package com.creation.events.eventsapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.TextView;
 
 /**
  * Created by Rishabh on 10/21/2016.
  */
 public class EventDetailsActivity extends AppCompatActivity {
+    Event e;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_details);
         Intent i=getIntent();
-        Event e=(Event)i.getSerializableExtra("event");
+        e=(Event)i.getSerializableExtra("event");
 
         getSupportActionBar().setTitle(e.name);
 
@@ -33,5 +35,10 @@ public class EventDetailsActivity extends AppCompatActivity {
         atime_to.setText(e.time_to);
         aDescription.setText(e.description);
         aOrganisers.setText(e.organisers);
+    }
+    public void deleteEvent(View view){
+        EventDB db = new EventDB(this);
+        db.deleteEvent(e.name);
+        finish();
     }
 }

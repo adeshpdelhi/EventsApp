@@ -7,13 +7,13 @@
 
     <TextView
         android:id="@+id/viewAllEvents_name"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20sp"
-        android:textSize="60sp"
+        android:textSize="37.5sp"
         android:gravity="center"
         android:layout_centerHorizontal="true"
-        android:hint="name"
+        android:hint="scripting challenge v7"
         />
 
     <TextView

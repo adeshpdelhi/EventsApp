@@ -66,7 +66,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         if (result.isSuccess()) {
             // Signed in successfully, show authenticated UI.
             googleAccount = result.getSignInAccount();
-            Toast.makeText(this,"Successful "+googleAccount.getDisplayName()+" "+googleAccount.getEmail(),Toast.LENGTH_LONG).show();
+            Toast.makeText(this,"Login successful!",Toast.LENGTH_LONG).show();
             SharedPreferences sharedPref = this.getSharedPreferences("loggedInUser", Context.MODE_PRIVATE);
             SharedPreferences.Editor sharedEditor = sharedPref.edit();
             sharedEditor.putString("username", googleAccount.getDisplayName());
