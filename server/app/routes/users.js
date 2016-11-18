@@ -1,6 +1,5 @@
 var express = require('express');
 var userRouter = express.Router();
-var auth = require('../../config/auth');
 var db = require('../models');
 
 userRouter.route('/')
@@ -37,6 +36,7 @@ userRouter.route('/')
     });
     
 })
+
 
 userRouter.route('/:email/subscribed_events/:eventId')
 .delete(function(req,res,next){
@@ -241,25 +241,25 @@ userRouter.route('/:email')
     });
 })
 
-// .put(function(req,res,next){
-//     console.log(req.body);
-//     db.users.update(
-//     req.body, {
-//             where:{
-//                 email:req.params.email
-//             }
-//         }
-//     )
-//     .then(function (result) { 
-//         console.log('success user update');
-//         res.status(200);
-//         res.end('saved');
-//     }, function(rejectedPromiseError){
-//         console.log('failed user update');
-//         res.status(400);
-//         res.end('failed update')
-//     });
-// })
+.put(function(req,res,next){
+    console.log(req.body);
+    db.users.update(
+    req.body, {
+            where:{
+                email:req.params.email
+            }
+        }
+    )
+    .then(function (result) { 
+        console.log('success user update');
+        res.status(200);
+        res.end('saved');
+    }, function(rejectedPromiseError){
+        console.log('failed user update');
+        res.status(400);
+        res.end('failed update')
+    });
+})
 ;
 
 module.exports = userRouter;

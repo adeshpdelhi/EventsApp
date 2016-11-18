@@ -12,13 +12,13 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.STRING,
             allowNull: false
           },
-          // associated_club: {
-          //   type: DataTypes.BIGINT,
-          //   references:{
-          //     model: 'clubs',
-          //     key: 'clubId'
-          //   }
-          // },
+          associated_club: {
+            type: DataTypes.BIGINT,
+            references:{
+              model: 'clubs',
+              key: 'clubId'
+            }
+          },
           date: {
             type: DataTypes.DATE
           },
@@ -32,13 +32,21 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.STRING,
             get:function(){
               if(this.getDataValue('announcements') != null)
-                return this.getDataValue('announcements').split(',');
-              else return this.getDataValue('announcements');
+                return this.getDataValue('announcements').split('&&');
+              else 
+                return [];
             },
             set:function(val){
-              var value =val[0], split=",";
+              console.log("setting: "+val);
+              if(val == null)
+              {
+                this.setDataValue('announcements',val);
+                return;
+              }
+              var value = val[0], split="&&";
               for(var i = 1; i< val.length;i++) 
                 value = value.concat(split,val[i]);
+              console.log(value);
               this.setDataValue('announcements',value);
             }
           },

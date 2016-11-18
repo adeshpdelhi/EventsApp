@@ -10,6 +10,10 @@ module.exports = function(sequelize, DataTypes) {
           name: {
             type: DataTypes.STRING
           },
+          automaticSubscription: {
+            type: DataTypes.BOOLEAN,
+            default: false
+          }
           // subscribed_clubs: {
           //   type: DataTypes.BIGINT,
           //   references:{

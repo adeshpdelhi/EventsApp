@@ -31,8 +31,8 @@ Object.keys(dbmodel).forEach(function(modelName) {
 dbmodel.sequelize = db.sequelize;
 dbmodel.Sequelize = db.Sequelize;
 
-dbmodel.clubs.hasMany(dbmodel.events,{foreignKey:'associated_events', constraints: true});
-dbmodel.events.belongsTo(dbmodel.clubs,{foreignKey:'associated_club', constraints: true });
+dbmodel.clubs.hasMany(dbmodel.events,{foreignKey:'eventId', constraints:false});
+dbmodel.events.belongsTo(dbmodel.clubs,{foreignKey:'eventId', constraints: true});
 
 // dbmodel.clubs.belongsToMany(dbmodel.users,{through:'clubs_users',foreignKey:'subscribers', constraints: true});
 // dbmodel.users.belongsToMany(dbmodel.clubs,{through:'clubs_users',foreignKey:'subscribed_clubs', constraints: true});
@@ -49,9 +49,12 @@ dbmodel.users.belongsToMany(dbmodel.events,{as:'SubscribedEvents', through: 'eve
 // dbmodel.events.belongsToMany(dbmodel.users,{through: 'events_users', foreignKey:'subscribers'});
 // dbmodel.users.belongsToMany(dbmodel.events,{through: 'events_users',foreignKey:'subscribed_events'});
 
-dbmodel.clubs.hasMany(dbmodel.users,{foreignKey:'admins', constraints: true});
+dbmodel.clubs.belongsToMany(dbmodel.users,{as:'Admins', through: 'clubs_admins', foreignKey:'administered_clubs', constraints: true});
+dbmodel.users.belongsToMany(dbmodel.clubs,{as:'AdministeredClubs', through: 'clubs_admins', foreignKey:'administrators', constraints: true});
 
-dbmodel.events.hasMany(dbmodel.users,{foreignKey:'organizers', constraints: true});
+dbmodel.events.belongsToMany(dbmodel.users,{as:'Admins', through: 'events_admins', foreignKey:'administered_events', constraints: true});
+dbmodel.users.belongsToMany(dbmodel.events,{as:'AdministeredEvents', through: 'events_admins', foreignKey:'administrators', constraints: true});
+
 
 
 module.exports = dbmodel;
