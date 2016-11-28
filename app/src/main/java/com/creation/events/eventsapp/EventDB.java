@@ -58,12 +58,12 @@ public class EventDB extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("name", new_event.name);
-        contentValues.put("club", new_event.club);
+        contentValues.put("club", new_event.clubs[0].getClubId().toString());
         contentValues.put("description", new_event.description);
-        contentValues.put("organisers", new_event.organisers);
+        contentValues.put("organisers", new_event.description);
         contentValues.put("date", new_event.date);
-        contentValues.put("time_from", new_event.time_from);
-        contentValues.put("time_to", new_event.time_to);
+        contentValues.put("time_from", new_event.getName());
+        contentValues.put("time_to", new_event.venue);
 
       /* SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
 
@@ -126,7 +126,8 @@ public class EventDB extends SQLiteOpenHelper {
         String description = res.getString(res.getColumnIndex(EVENTS_COLUMN_DESCRIPTION));
         String organisers = res.getString(res.getColumnIndex(EVENTS_COLUMN_ORGANISERS));
 
-        Event newevent = new Event(name, club, date,time_from,time_to,description, organisers);
+//        ---Event newevent = new Event(name, new Club(1,"New Club","Another new club"), date,time_from,time_to,description, organisers);
+        Event newevent = null;
         array_list.add(newevent);
         res.moveToNext();
     }

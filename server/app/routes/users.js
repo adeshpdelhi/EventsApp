@@ -1,6 +1,8 @@
 var express = require('express');
 var userRouter = express.Router();
 var db = require('../models');
+var sequelize = require('../../config/sequelize').sequelize;
+
 
 userRouter.route('/')
 
@@ -56,6 +58,25 @@ userRouter.route('/')
 })
 
 
+userRouter.route('/:email/:eventId')
+
+.post(function(req,res,next){
+    console.log(req.params.email);
+    sequelize.query("insert into events_users(subscribed_events, subscribers) values (" + req.params.eventId+",'"+ req.params.email+"');");
+    res.status(200);
+    res.end("added");
+
+})
+
+
+.delete(function(req,res,next){
+    console.log(req.params.email);
+    sequelize.query("delete from  events_users where subscribers='"+req.params.email+ "' and subscribed_events="+req.params.eventId+";");
+    res.status(200);
+    res.end("deleted");
+})
+;
+
 userRouter.route('/:email')
 .get(function(req,res,next){
     console.log('procesing get');
@@ -87,6 +108,7 @@ userRouter.route('/:email')
 })
 
 .put(function(req,res,next){
+    console.log('Body is \n');
     console.log(req.body);
     db.users.update(
     req.body, {
@@ -104,8 +126,14 @@ userRouter.route('/:email')
         }).then(function(user){
             if(req.body.SubscribedClubs!=null)
                 user.setSubscribedClubs(db.clubs.build(req.body.SubscribedClubs));
-            if(req.body.SubscribedEvents!=null)
-                user.setSubscribedEvents(db.events.build(req.body.SubscribedEvents));
+            // if(req.body.SubscribedEvents!=null){
+            //     console.log('updating eventss subscribed');
+            //     console.log(req.body.SubscribedEvents[0].eventId);
+            //     if(req.body.SubscribedEvents[0].isSubscribed)
+            //         sequelize.query("insert into events_users(subscribed_events, subscribers) values ("+req.body.SubscribedEvents[0].eventId+','+user.email);
+            //     else
+            //         sequelize.query("delete * from  events_users where subscribers=",+user.email);
+            // }
             if(req.body.AdministeredClubs!=null)    
                 user.setAdministeredClubs(db.clubs.build(req.body.AdministeredClubs));
             if(req.body.AdministeredEvents!=null)
@@ -121,7 +149,14 @@ userRouter.route('/:email')
         res.end('failed update')
     });
 })
+
+
+
 ;
+
+
+
+
 
 // userRouter.route('/:email/subscribed_events/:eventId')
 // .delete(function(req,res,next){

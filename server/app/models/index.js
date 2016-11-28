@@ -31,8 +31,10 @@ Object.keys(dbmodel).forEach(function(modelName) {
 dbmodel.sequelize = db.sequelize;
 dbmodel.Sequelize = db.Sequelize;
 
-dbmodel.clubs.hasMany(dbmodel.events,{foreignKey:'eventId', constraints:false});
-dbmodel.events.belongsTo(dbmodel.clubs,{foreignKey:'eventId', constraints: false});
+// dbmodel.clubs.hasMany(dbmodel.events,{ as:'events', foreignKey:'associated_club', constraints:false});
+dbmodel.clubs.belongsToMany(dbmodel.events,{ as:'Events', through: 'clubs_events', foreignKey: 'clubs', constraints: true});
+// dbmodel.events.belongsTo(dbmodel.clubs,{ as:'club', foreignKey:'associated_club', constraints: false});
+dbmodel.events.belongsToMany(dbmodel.clubs,{ as:'Clubs', through: 'clubs_events', foreignKey: 'events', constraints: true});
 
 // dbmodel.clubs.belongsToMany(dbmodel.users,{through:'clubs_users',foreignKey:'subscribers', constraints: true});
 // dbmodel.users.belongsToMany(dbmodel.clubs,{through:'clubs_users',foreignKey:'subscribed_clubs', constraints: true});

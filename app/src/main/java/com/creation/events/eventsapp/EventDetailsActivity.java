@@ -29,12 +29,12 @@ public class EventDetailsActivity extends AppCompatActivity {
 
         // Populate the data into the template view using the data object
         aName.setText(e.name);
-        aClub.setText(e.club);
+        aClub.setText(e.clubs[0].getName());
         aDate.setText(e.date);
-        atime_from.setText(e.time_from);
-        atime_to.setText(e.time_to);
-        aDescription.setText(e.description);
-        aOrganisers.setText(e.organisers);
+//        atime_from.setText(e.eventId);
+        atime_to.setText(e.venue);
+        aDescription.setText(e.getAdmins()[0].getName());
+        aOrganisers.setText(e.time);
     }
     public void deleteEvent(View view){
         EventDB db = new EventDB(this);

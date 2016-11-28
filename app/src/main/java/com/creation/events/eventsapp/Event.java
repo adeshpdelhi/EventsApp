@@ -1,23 +1,68 @@
 package com.creation.events.eventsapp;
-import android.app.DatePickerDialog;
-import android.widget.DatePicker;
-import android.widget.TimePicker;
+
+import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
-import java.sql.Date;
 
-/**
- * Created by Rishabh on 10/15/2016.
- */
 public class Event implements Serializable {
 
+    public Integer eventId;
     public String name;
+    @SerializedName("Clubs")
+    public Club[] clubs = new Club[1];
     public String date;
-    public String time_from;
-    public String time_to;
-    public String club;
     public String description;
-    public String organisers;
+    public String venue;
+    public String time;
+    public String[] announcements = new String[10];
+    public User[] Admins = new User[5];
+    private boolean isSubscribed = false;
+    //2016-12-29T00:00:00.000Z
+    public Integer getYear(){
+        return Integer.parseInt(date.split("-")[0]);
+    }
+    public Integer getMonth(){
+        return Integer.parseInt(date.split("-")[1]);
+    }
+    public Integer getDay(){
+        return Integer.parseInt(date.split("-")[2].split("T")[0]);
+    }
+    public Integer getHour(){
+        return Integer.parseInt(time.split(":")[0]);
+    }
+    public Integer getMinute(){
+        return Integer.parseInt(time.split(":")[1]);
+    }
+    public Event(Integer eventId, String name, Club[] clubs, String date, String description, String venue, String time, String[] announcements, User[] admins) {
+        this.eventId = eventId;
+        this.name = name;
+        this.clubs = clubs;
+        this.date = date;
+        this.description = description;
+        this.venue = venue;
+        this.time = time;
+        this.announcements = announcements;
+        Admins = admins;
+    }
+
+    public Event(String name, Club[] clubs, String date, String description, String venue, String time, String[] announcements, User[] admins) {
+        this.name = name;
+        this.clubs = clubs;
+        this.date = date;
+        this.description = description;
+        this.venue = venue;
+        this.time = time;
+        this.announcements = announcements;
+        Admins = admins;
+    }
+
+    public Integer getEventId() {
+        return eventId;
+    }
+
+    public void setEventId(Integer eventId) {
+        this.eventId = eventId;
+    }
 
     public String getName() {
         return name;
@@ -25,6 +70,14 @@ public class Event implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Club[] getClubs() {
+        return clubs;
+    }
+
+    public void setClubs(Club[] clubs) {
+        this.clubs = clubs;
     }
 
     public String getDate() {
@@ -35,30 +88,6 @@ public class Event implements Serializable {
         this.date = date;
     }
 
-    public String getTime_from() {
-        return time_from;
-    }
-
-    public void setTime_from(String time_from) {
-        this.time_from = time_from;
-    }
-
-    public String getTime_to() {
-        return time_to;
-    }
-
-    public void setTime_to(String time_to) {
-        this.time_to = time_to;
-    }
-
-    public String getClub() {
-        return club;
-    }
-
-    public void setClub(String club) {
-        this.club = club;
-    }
-
     public String getDescription() {
         return description;
     }
@@ -67,24 +96,43 @@ public class Event implements Serializable {
         this.description = description;
     }
 
-    public String getOrganisers() {
-        return organisers;
+    public String getVenue() {
+        return venue;
     }
 
-    public void setOrganisers(String organisers) {
-        this.organisers = organisers;
+    public void setVenue(String venue) {
+        this.venue = venue;
     }
 
-    public Event(String name, String club, String date, String time_from, String time_to, String description, String organisers)
-    {
-        this.name=name;
-        this.club=club;
-        this.date=date;
-        this.time_from=time_from;
-        this.time_to=time_to;
-        this.description=description;
-        this.organisers=organisers;
+    public String getTime() {
+        return time;
     }
 
+    public void setTime(String time) {
+        this.time = time;
+    }
 
+    public String[] getAnnouncements() {
+        return announcements;
+    }
+
+    public void setAnnouncements(String[] announcements) {
+        this.announcements = announcements;
+    }
+
+    public User[] getAdmins() {
+        return Admins;
+    }
+
+    public void setAdmins(User[] admins) {
+        Admins = admins;
+    }
+
+    public Boolean getSubscribed() {
+        return isSubscribed;
+    }
+
+    public void setSubscribed(Boolean subscribed) {
+        isSubscribed = subscribed;
+    }
 }

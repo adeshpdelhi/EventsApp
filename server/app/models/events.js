@@ -10,13 +10,13 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.STRING,
             allowNull: false
           },
-          associated_club: {
-            type: DataTypes.BIGINT,
-            references:{
-              model: 'clubs',
-              key: 'clubId'
-            }
-          },
+          // associated_club: {
+          //   type: DataTypes.BIGINT,
+          //   references:{
+          //     model: 'clubs',
+          //     key: 'clubId'
+          //   }
+          // },
           date: {
             type: DataTypes.DATE
           },
@@ -24,6 +24,9 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.STRING
           },
           venue: {
+            type: DataTypes.STRING
+          },
+          time: {
             type: DataTypes.STRING
           },
           announcements: {

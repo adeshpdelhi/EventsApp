@@ -7,16 +7,16 @@ eventRouter.route('/')
     console.log('procesing get');
     db.events.findAll({
         include: [{
-                model: db.clubs
-            },{
                 model: db.users,
-                as: 'Admins',
-                attributes: ['email','name']
+                as: 'Admins'
             },
             {
                 model: db.users,
-                as: 'Subscribers',
-                attributes: ['email']
+                as: 'Subscribers'
+            },
+            {
+                model: db.clubs,
+                as: 'Clubs'
             }
         ]
     }).then(function(events){
@@ -28,6 +28,9 @@ eventRouter.route('/')
 .post(function (req, res, next) {
     console.log('processing post : '+ req.body);
     console.log(req.body);
+    new_date = req.body.date.split("-");
+    req.body.date = new Date(new_date[2],new_date[1],new_date[0]);
+    req.body.date = new Date(req.body.date.getTime() + 330*60000);
     db.events.findOne({
         where:{
             eventId:req.body.eventId,
@@ -39,6 +42,16 @@ eventRouter.route('/')
             console.log('found '+JSON.stringify(event));
             db.events.build(req.body).save().then(function(result){
                 res.json(result);
+                db.events.findOne({
+                    where: {
+                        eventId: result.eventId
+                    }
+                }).then(function(event){
+                    if(req.body.Clubs!=null)
+                        event.setClubs(db.clubs.build(req.body.Clubs));
+                    if(req.body.Admins!=null)
+                        event.setAdmins(db.users.build(req.body.Admins));
+                })
             })
         }
         else{
@@ -92,16 +105,16 @@ eventRouter.route('/:eventId')
             eventId:req.params.eventId
         },
         include: [{
-                model: db.clubs
-            },{
                 model: db.users,
-                as: 'Admins',
-                attributes: ['email', 'name']
+                as: 'Admins'
             },
             {
                 model: db.users,
-                as: 'Subscribers',
-                attributes: ['email']
+                as: 'Subscribers'
+            },
+            {
+                model: db.clubs,
+                as: 'Clubs'
             }
         ]
     }).then(function(event){

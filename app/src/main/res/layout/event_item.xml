@@ -4,7 +4,10 @@
     android:layout_height="150sp"
     android:background="@drawable/viewback">
 
-
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/item_nonbutton">
     <TextView
         android:id="@+id/viewAllEvents_name"
         android:layout_width="match_parent"
@@ -13,6 +16,7 @@
         android:textSize="37.5sp"
         android:gravity="center"
         android:layout_centerHorizontal="true"
+        android:textColor="@color/blackColour"
         android:hint="scripting challenge v7"
         />
 
@@ -21,6 +25,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="20sp"
+        android:textColor="@color/blackColour"
         android:hint="club"
         android:layout_margin="20sp"
         android:layout_alignParentBottom="true"
@@ -32,9 +37,19 @@
         android:layout_height="wrap_content"
         android:hint="date"
         android:layout_margin="20sp"
+        android:textColor="@color/blackColour"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         />
+    </RelativeLayout>
+
+    <Button
+        android:layout_alignParentEnd="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/viewAllEvents_toggle"
+        android:text="T"
+        android:textSize="5sp"/>
 
 
 
