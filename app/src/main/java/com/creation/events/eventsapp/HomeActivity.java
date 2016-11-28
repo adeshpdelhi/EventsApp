@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -75,6 +76,7 @@ public class HomeActivity extends AppCompatActivity implements GoogleApiClient.O
 
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
+        PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
     }
 
     private void setupViewPager(ViewPager viewPager) {
@@ -175,9 +177,8 @@ public class HomeActivity extends AppCompatActivity implements GoogleApiClient.O
             case R.id.signoutoption:
                 signOut();
                 return true;
-            case R.id.addeventoption:
-                GotoAddEvent();
-                return true;
+            case R.id.settingsoption:
+                startActivity(new Intent(this,SettingsActivity.class));
             default:
                 return super.onOptionsItemSelected(item);
         }

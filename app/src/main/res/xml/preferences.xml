@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+        <PreferenceCategory android:title="Set reminder times" >
+                <ListPreference
+                    android:key="reminder1"
+                    android:entries="@array/reminder"
+                    android:summary="Choose a reminder time"
+                    android:entryValues="@array/reminderValues"
+                    android:title="Reminder Time 1" />
+                <ListPreference
+                    android:key="reminder2"
+                    android:entries="@array/reminder"
+                    android:summary="Choose a reminder time"
+                    android:entryValues="@array/reminderValues"
+                    android:title="Reminder Time 2" />
+        </PreferenceCategory>
+
+</PreferenceScreen>

@@ -5,10 +5,12 @@ import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.provider.CalendarContract;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -102,6 +104,26 @@ public class EventsAdapter extends ArrayAdapter<Event> {
                     values.put(CalendarContract.Events.CALENDAR_ID, calID);
                     values.put(CalendarContract.Events.EVENT_TIMEZONE, "India");
                     Uri uri = cr.insert(CalendarContract.Events.CONTENT_URI, values);
+                    long eventID = Long.parseLong(uri.getLastPathSegment());
+                    SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(listFragment.getContext());
+                    Integer reminderTime = Integer.parseInt(sharedPrefs.getString("reminder1","0"));
+                    if(reminderTime!=null && reminderTime !=0) {
+
+                        values = new ContentValues();
+                        values.put(CalendarContract.Reminders.MINUTES, reminderTime);
+                        values.put(CalendarContract.Reminders.EVENT_ID, eventID);
+                        values.put(CalendarContract.Reminders.METHOD, CalendarContract.Reminders.METHOD_ALERT);
+                        cr.insert(CalendarContract.Reminders.CONTENT_URI, values);
+                    }
+                    reminderTime = Integer.parseInt(sharedPrefs.getString("reminder2","0"));
+                    if(reminderTime!=null && reminderTime !=0) {
+                        values = new ContentValues();
+                        values.put(CalendarContract.Reminders.MINUTES, reminderTime);
+                        values.put(CalendarContract.Reminders.EVENT_ID, eventID);
+                        values.put(CalendarContract.Reminders.METHOD, CalendarContract.Reminders.METHOD_ALERT);
+                        cr.insert(CalendarContract.Reminders.CONTENT_URI, values);
+                    }
+
                     Log.v(TAG,"URI is "+uri);
                 }
                 else {

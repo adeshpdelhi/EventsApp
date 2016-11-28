@@ -16,17 +16,18 @@
         <activity android:name=".StartActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".HomeActivity" />
-        <activity android:name=".LoginActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
-        <activity android:name=".AddEventActivity"></activity>
-        <activity android:name=".EventDetailsActivity"></activity>
-        <activity android:name=".ClubDetailsActivity"></activity>
-
-
+        <activity
+            android:name=".LoginActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity android:name=".AddEventActivity" />
+        <activity android:name=".EventDetailsActivity" />
+        <activity android:name=".ClubDetailsActivity" />
+        <activity android:name=".SettingsActivity"></activity>
     </application>
 
 </manifest>

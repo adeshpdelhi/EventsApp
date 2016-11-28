@@ -76,7 +76,9 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="addEventOpen"/>
+        android:onClick="addEventOpen"
+        android:text="Add Event"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"/>
     </LinearLayout>
 
 </ScrollView>
