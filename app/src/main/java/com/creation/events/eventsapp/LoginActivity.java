@@ -1,5 +1,6 @@
 package com.creation.events.eventsapp;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -19,8 +20,15 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 
+import retrofit.Callback;
+import retrofit.RestAdapter;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
+
 public class LoginActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener{
     public static final String TAG= "LoginActivity";
+    private static final String ROOT_URL = HomeActivity.ROOT_URL;
+
     public static final int RC_SIGN_IN = 25;
     String mEmail;
     String mFullName;
@@ -72,13 +80,40 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
             sharedEditor.putString("username", googleAccount.getDisplayName());
             sharedEditor.putString("email", googleAccount.getEmail());
             sharedEditor.commit();
-            User user = new User(googleAccount.getDisplayName(),googleAccount.getEmail());
-            Intent i = new Intent(this,HomeActivity.class);
-            Bundle b = new Bundle();
-            b.putSerializable("user",user);
-            i.putExtras(b);
-            startActivity(i);
-            finish();
+            final User user = new User(googleAccount.getDisplayName(),googleAccount.getEmail());
+
+            final ProgressDialog loading = ProgressDialog.show(this,"Adding User","Please wait...",false,false);
+
+            RestAdapter adapter = new RestAdapter.Builder()
+                    .setEndpoint(ROOT_URL)
+                    .build();
+
+            //Creating an object of our api interface
+            UsersAPI api = adapter.create(UsersAPI.class);
+
+            //Defining the method
+            api.addUser(user, new Callback<User>() {
+                @Override
+                public void success(User retrieved_user, Response response) {
+                    //Dismissing the loading progressbar
+                    loading.dismiss();
+                    Intent i = new Intent(getApplicationContext(),HomeActivity.class);
+                    Bundle b = new Bundle();
+                    b.putSerializable("user",user);
+                    i.putExtras(b);
+                    startActivity(i);
+                    finish();
+                }
+
+                @Override
+                public void failure(RetrofitError error) {
+                    //you can handle the errors here
+                    Log.e(TAG,error.toString());
+                    Toast.makeText(getApplicationContext(), "Error adding user!", Toast.LENGTH_SHORT).show();
+                    loading.dismiss();
+                }
+            });
+
         } else {
             // Signed out, show unauthenticated UI.
             Toast.makeText(this,"Not authenticated!",Toast.LENGTH_LONG).show();

@@ -81,7 +81,10 @@ public class Event implements Serializable {
     }
 
     public String getDate() {
-        return date;
+        if(date!=null)
+            return date.split("T")[0];
+        else
+            return  date;
     }
 
     public void setDate(String date) {

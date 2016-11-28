@@ -9,9 +9,9 @@
         android:id="@+id/viewAllClubs_club"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:hint="club"
         android:layout_margin="20sp"
+        android:textSize="37.5sp"
+        android:hint="club"
         android:textColor="@color/blackColour"
         android:layout_alignParentBottom="true"
         />

@@ -61,7 +61,7 @@ public class EventsAdapter extends ArrayAdapter<Event> {
         aName.setText(event.name);
         Log.v(TAG, event.name);
         aClub.setText(event.clubs[0].getName());
-        aDate.setText(event.date);
+        aDate.setText(event.getDate());
         if(event.getSubscribed()!=null)
             Log.v(TAG,event.getSubscribed().toString());
         else
