@@ -60,15 +60,6 @@ public class AddClubActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(),"Add organizer name!", Toast.LENGTH_SHORT).show();
             return;
         }
-        final ProgressDialog loading = ProgressDialog.show(this,"Fetching Data","Please wait...",false,false);
-
-        //Creating a rest adapter
-        RestAdapter adapter = new RestAdapter.Builder()
-                .setEndpoint(ROOT_URL)
-                .build();
-
-        //Creating an object of our api interface
-        ClubsAPI api = adapter.create(ClubsAPI.class);
         User[] admin = new User[1];
 
         for(int i=0;i<users.size();i++) {
@@ -78,6 +69,21 @@ public class AddClubActivity extends AppCompatActivity {
                 break;
             }
         }
+        if(admin[0]==null){
+            Toast.makeText(getApplicationContext(),"User not found!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        Log.v(TAG, "EMail is "+admin[0].getEmail());
+        final ProgressDialog loading = ProgressDialog.show(this,"Fetching Data","Please wait...",false,false);
+
+        //Creating a rest adapter
+        RestAdapter adapter = new RestAdapter.Builder()
+                .setEndpoint(ROOT_URL)
+                .build();
+
+        //Creating an object of our api interface
+        ClubsAPI api = adapter.create(ClubsAPI.class);
+
 //        admin [0] = HomeActivity.getCurrentUser();
         Club new_club = new Club(0,mName.getText().toString(),mDescription.getText().toString(),null, admin, null);
         //Defining the method

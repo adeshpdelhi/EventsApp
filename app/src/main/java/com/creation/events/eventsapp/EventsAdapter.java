@@ -34,7 +34,7 @@ import retrofit.client.Response;
  * Created by Rishabh on 10/1/2016.
  */
 public class EventsAdapter extends ArrayAdapter<Event> {
-    private static final String TAG = "EventAdapter";
+    private static final String TAG = "EventssAdapter";
     private static final String ROOT_URL = HomeActivity.ROOT_URL;
     ListEventsFragment listFragment;
 
@@ -59,13 +59,12 @@ public class EventsAdapter extends ArrayAdapter<Event> {
 
         // Populate the data into the template view using the data object
         aName.setText(event.name);
-        Log.v(TAG, event.name);
         aClub.setText(event.clubs[0].getName());
         aDate.setText(event.getDate());
-        if(event.getSubscribed()!=null)
-            Log.v(TAG,event.getSubscribed().toString());
-        else
-            Log.v(TAG, "Null event found!");
+//        if(event.getSubscribed()!=null)
+//            Log.v(TAG,event.getSubscribed().toString());
+//        else
+//            Log.v(TAG, "Null event found!");
         if(event.getSubscribed())
             aToggleSubscription.setBackgroundColor(Color.GREEN);
         else
@@ -87,7 +86,6 @@ public class EventsAdapter extends ArrayAdapter<Event> {
                         long calID = 1;
                         long startMillis = 0;
                         long endMillis = 0;
-                        Log.v(TAG, "Date : " + event.getDate());
                         Calendar beginTime = Calendar.getInstance();
                         beginTime.set(event.getYear(), event.getMonth() - 1, event.getDay(), event.getHour(), event.getMinute());
                         startMillis = beginTime.getTimeInMillis();
