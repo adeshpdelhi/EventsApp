@@ -1,6 +1,8 @@
 var express = require('express');
 var clubRouter = express.Router();
 var db = require('../models');
+var sequelize = require('../../config/sequelize').sequelize;
+
 
 clubRouter.route('/')
 .get(function (req, res, next) {
@@ -37,6 +39,7 @@ clubRouter.route('/')
         {
             console.log('found '+JSON.stringify(club));
             db.clubs.build(req.body).save().then(function(result){
+                sequelize.query("insert into clubs_admins(administered_clubs, administrators) values ("+result.clubId+", '"+req.body.admins[0].email+"')");
                 res.json(result);
             })
         }

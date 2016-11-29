@@ -46,7 +46,8 @@ userRouter.route('/')
         {
             console.log('found '+JSON.stringify(user));
             db.users.build(req.body).save().then(function(result){
-                res.json("Added");
+                res.status(200);
+                res.end("Added");
             });
         }
         else{

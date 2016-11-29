@@ -5,7 +5,10 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 
 /**
  * Created by Rishabh on 10/21/2016.
@@ -36,6 +39,19 @@ public class ClubDetailsActivity extends AppCompatActivity {
                 eventList = eventList +" "+ club.getEvents()[j].getName();
         Log.e(TAG, eventList.toString());
         Log.e(TAG, "again");
+        Boolean isAdmin = false;
+        User user = HomeActivity.getCurrentUser();
+        for(int j=0;j<user.getAdministeredEvents().size();j++){
+            if (user.getAdministeredEvents().get(j).getEventId().equals(club.getClubId()))
+            {
+                isAdmin = true;
+                break;
+            }
+        }
+        if(!isAdmin)
+        {
+            ((Button)findViewById(R.id.button_add_club)).setVisibility(View.GONE);
+        }
 //        aEvents.setText(eventList);
     }
 
