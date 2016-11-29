@@ -49,7 +49,7 @@ public class AddClubActivity extends AppCompatActivity {
                 //Dismissing the loading progressbar
                 loading.dismiss();
                 Toast.makeText(getApplicationContext(), "Added!", Toast.LENGTH_SHORT).show();
-
+                finish();
             }
 
             @Override

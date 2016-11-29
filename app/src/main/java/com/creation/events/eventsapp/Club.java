@@ -1,5 +1,7 @@
 package com.creation.events.eventsapp;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 
 /**
@@ -9,7 +11,8 @@ public class Club implements Serializable{
     Integer clubId;
     String name;
     String details;
-    Event[] events = new Event[20];
+    @SerializedName("Events")
+    Event[] events = new Event[5];
     User[] admins = new User[5];
     User[] subscribers = new User[20];
 

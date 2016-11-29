@@ -235,7 +235,7 @@ public void setDate(View view)
                     //Dismissing the loading progressbar
                     loading.dismiss();
                     Toast.makeText(getApplicationContext(), "Success!", Toast.LENGTH_SHORT).show();
-
+                    finish();
                 }
 
                 @Override

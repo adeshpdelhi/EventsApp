@@ -178,9 +178,9 @@ public class HomeActivity extends AppCompatActivity implements GoogleApiClient.O
                 signOut();
                 return true;
             case R.id.settingsoption:
-                startActivity(new Intent(this,AddClubActivity.class));
-            case R.id.addcluboption:
                 startActivity(new Intent(this,SettingsActivity.class));
+            case R.id.addcluboption:
+                startActivity(new Intent(this,AddClubActivity.class));
             default:
                 return super.onOptionsItemSelected(item);
         }

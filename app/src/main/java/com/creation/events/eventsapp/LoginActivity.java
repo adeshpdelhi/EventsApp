@@ -92,9 +92,9 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
             UsersAPI api = adapter.create(UsersAPI.class);
 
             //Defining the method
-            api.addUser(user, new Callback<User>() {
+            api.addUser(user, new Callback<String>() {
                 @Override
-                public void success(User retrieved_user, Response response) {
+                public void success(String user_string, Response response) {
                     //Dismissing the loading progressbar
                     loading.dismiss();
                     Intent i = new Intent(getApplicationContext(),HomeActivity.class);

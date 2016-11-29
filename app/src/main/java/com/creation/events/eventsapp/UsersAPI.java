@@ -25,7 +25,7 @@ public interface UsersAPI {
     @POST("/users/{id}/{eventId}")
     public void addSubscribedEvent(@Path("id") String email, @Path("eventId") int eventId, Callback <String> response);
     @POST("/users")
-    public void addUser(@Body User user, Callback <User> response);
+    public void addUser(@Body User user, Callback <String> response);
     @DELETE("/users/{id}/{eventId}")
     public void deleteSubscribedEvent(@Path("id") String email, @Path("eventId") int eventId, Callback <String> response);
 
