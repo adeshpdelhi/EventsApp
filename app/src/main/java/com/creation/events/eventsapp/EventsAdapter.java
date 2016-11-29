@@ -179,7 +179,9 @@ public class EventsAdapter extends ArrayAdapter<Event> {
         // Return the completed view to render on screen
         return convertView;
     }
+    //////////////////////////////////////////////////////////////////////////////////////////////
     private void toggleSubscription(final Context context, Event event){
+
         User user = HomeActivity.getCurrentUser();
 
         //Creating a rest adapter
@@ -240,4 +242,7 @@ public class EventsAdapter extends ArrayAdapter<Event> {
         }
 
     }
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
 }
