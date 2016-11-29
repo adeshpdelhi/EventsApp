@@ -1,12 +1,15 @@
 package com.creation.events.eventsapp;
 
 import android.Manifest;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
@@ -35,7 +38,9 @@ import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import java.util.TimeZone;
 
 import retrofit.Callback;
 import retrofit.RestAdapter;
@@ -62,9 +67,7 @@ public class HomeActivity extends AppCompatActivity implements GoogleApiClient.O
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_viewpager);
-        Log.d(TAG,"going inside take_oer");
         take_permission();
-        Toast.makeText(this,"Gone inside take_permission",Toast.LENGTH_LONG).show();
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
                 .build();
@@ -82,7 +85,35 @@ public class HomeActivity extends AppCompatActivity implements GoogleApiClient.O
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
+        setRecurringAlarm(getApplicationContext());
+    }
 
+    private void setRecurringAlarm(Context context) {
+
+        Calendar updateTime = Calendar.getInstance();
+        updateTime.setTimeZone(TimeZone.getDefault());
+        updateTime.set(Calendar.HOUR_OF_DAY, 12);
+        updateTime.set(Calendar.MINUTE, 30);
+        Intent downloader = new Intent(context, FetchEventsReceiver.class);
+        downloader.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, downloader,
+                PendingIntent.FLAG_CANCEL_CURRENT);
+//
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+//
+//        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, updateTime.getTimeInMillis(), AlarmManager.INTERVAL_FIFTEEN_MINUTES, pendingIntent);
+
+//        Log.d("Home Activity", "Set alarmManager.setRepeating to: " + updateTime.getTime().toLocaleString());
+
+
+//        alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP,
+//                SystemClock.elapsedRealtime() + 30*1000,
+//                pendingIntent);
+        alarmManager.setInexactRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP,
+                SystemClock.elapsedRealtime() + 1*1000,
+                1*1000, pendingIntent);
+//        Toast.makeText(getApplicationContext(),"Service started!", Toast.LENGTH_SHORT).show();
     }
 
     private void setupViewPager(ViewPager viewPager) {
@@ -233,7 +264,7 @@ public class HomeActivity extends AppCompatActivity implements GoogleApiClient.O
         //If permission is granted returning true
         if (result == PackageManager.PERMISSION_GRANTED)
         {
-            Toast.makeText(getApplicationContext(),"You already have the permission",Toast.LENGTH_LONG).show();
+//            Toast.makeText(getApplicationContext(),"You already have the permission",Toast.LENGTH_LONG).show();
             return;
         }
 
