@@ -33,7 +33,8 @@
             android:id="@+id/newclub_organizer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Organizer email"/>
+            android:layout_marginTop="@dimen/activity_horizontal_margin"
+            android:hint="Admin email"/>
 
         <Button
             android:id="@+id/newclub_submit"
