@@ -50,7 +50,7 @@ userRouter.route('/')
             });
         }
         else{
-            res.status(400);
+            res.status(200);
             res.end('Already exists!')
         }
     });

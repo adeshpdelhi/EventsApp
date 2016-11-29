@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <item android:id="@+id/signoutoption"
-        android:title="@string/sign_out" />
     <item android:id="@+id/settingsoption"
         android:title="Settings" />
+    <item android:id="@+id/addcluboption"
+        android:title="Add Club" />
+    <item android:id="@+id/signoutoption"
+        android:title="@string/sign_out" />
+
 
 </menu>

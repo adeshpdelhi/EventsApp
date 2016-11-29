@@ -43,7 +43,7 @@ import retrofit.client.Response;
  */
 public class HomeActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener, ListEventsFragment.Refresh{
     public static final String TAG = "HomeActivity";
-    public static final String ROOT_URL = "http://192.168.0.104:3000/";
+    public static final String ROOT_URL = "http://192.168.58.241:3000/";
     private Toolbar toolbar;
     private TabLayout tabLayout;
     private ViewPager viewPager;
@@ -178,6 +178,8 @@ public class HomeActivity extends AppCompatActivity implements GoogleApiClient.O
                 signOut();
                 return true;
             case R.id.settingsoption:
+                startActivity(new Intent(this,AddClubActivity.class));
+            case R.id.addcluboption:
                 startActivity(new Intent(this,SettingsActivity.class));
             default:
                 return super.onOptionsItemSelected(item);
