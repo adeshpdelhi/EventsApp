@@ -26,6 +26,8 @@ public class User implements Serializable{
     String name, email;
     @SerializedName("SubscribedEvents")
     private ArrayList<Event> SubscribedEvents= new ArrayList<Event>();
+    @SerializedName("AdministeredEvents")
+    private ArrayList<Event> AdministeredEvents= new ArrayList<Event>();
     public User(String name, String email){
         this.name = name;
         this.email = email;
@@ -69,4 +71,11 @@ public class User implements Serializable{
         return name;
     }
 
+    public ArrayList<Event> getAdministeredEvents() {
+        return AdministeredEvents;
+    }
+
+    public void setAdministeredEvents(ArrayList<Event> administeredEvents) {
+        AdministeredEvents = administeredEvents;
+    }
 }

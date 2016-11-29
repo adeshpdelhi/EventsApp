@@ -196,7 +196,7 @@ public class EventsAdapter extends ArrayAdapter<Event> {
                 public void success(String str, Response response) {
                     //Dismissing the loading progressbar
     //                loading.dismiss();
-                    Toast.makeText(context, "Success!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "Added notification!", Toast.LENGTH_SHORT).show();
 //                    listFragment.fetchAndUpdateList();
 //                    listFragment.homeActivity.refreshUser();
 //                    listFragment.updateUserSubscriptions();
@@ -221,7 +221,7 @@ public class EventsAdapter extends ArrayAdapter<Event> {
                 public void success(String str, Response response) {
                     //Dismissing the loading progressbar
                     //                loading.dismiss();
-                    Toast.makeText(context, "Success!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "Removed notification!", Toast.LENGTH_SHORT).show();
 //                    listFragment.homeActivity.refreshUser();
 //                    listFragment.updateUserSubscriptions();
 //                    listFragment.adapter.notifyDataSetChanged();

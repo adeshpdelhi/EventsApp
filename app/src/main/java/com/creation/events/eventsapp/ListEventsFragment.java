@@ -102,7 +102,8 @@ public class ListEventsFragment extends Fragment{
     }
 
     public void updateUserSubscriptions(){
-
+        if(HomeActivity.getCurrentUser()==null)
+            return;
         ArrayList<Event> subscribedEvents = HomeActivity.getCurrentUser().getSubscribedEvents();
         Log.v(TAG, "Current user is "+HomeActivity.getCurrentUser().getName());
         for(int i=0;i<subscribedEvents.size();i++){
