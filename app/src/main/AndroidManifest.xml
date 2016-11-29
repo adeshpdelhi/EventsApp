@@ -27,7 +27,8 @@
         <activity android:name=".AddEventActivity" />
         <activity android:name=".EventDetailsActivity" />
         <activity android:name=".ClubDetailsActivity" />
-        <activity android:name=".SettingsActivity"></activity>
+        <activity android:name=".SettingsActivity" />
+        <activity android:name=".AddClubActivity"></activity>
     </application>
 
 </manifest>

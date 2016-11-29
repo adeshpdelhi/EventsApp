@@ -73,7 +73,8 @@ public class EventsAdapter extends ArrayAdapter<Event> {
         aToggleSubscription.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 toggleSubscription(v.getContext().getApplicationContext(),event);
-                if(!event.getSubscribed()) {
+                try {
+                    if (!event.getSubscribed()) {
 //                    Calendar cal = Calendar.getInstance();
 //                    Intent intent = new Intent(Intent.ACTION_EDIT);
 //                    intent.setType("vnd.android.cursor.item/event");
@@ -83,50 +84,49 @@ public class EventsAdapter extends ArrayAdapter<Event> {
 //                    intent.putExtra("endTime", cal.getTimeInMillis()+60*60*1000);
 //                    intent.putExtra("title", "A Test Event from android app");
 //                    listFragment.startActivity(intent);
-                    long calID = 1;
-                    long startMillis = 0;
-                    long endMillis = 0;
-                    Log.v(TAG,"Date : "+event.getDate());
-                    Calendar beginTime = Calendar.getInstance();
-                    beginTime.set(event.getYear(), event.getMonth()-1, event.getDay(), event.getHour(), event.getMinute());
-                    startMillis = beginTime.getTimeInMillis();
-                    Calendar endTime = Calendar.getInstance();
-                    endTime.set(event.getYear(), event.getMonth()-1, event.getDay(), event.getHour()+1, event.getMinute());
+                        long calID = 1;
+                        long startMillis = 0;
+                        long endMillis = 0;
+                        Log.v(TAG, "Date : " + event.getDate());
+                        Calendar beginTime = Calendar.getInstance();
+                        beginTime.set(event.getYear(), event.getMonth() - 1, event.getDay(), event.getHour(), event.getMinute());
+                        startMillis = beginTime.getTimeInMillis();
+                        Calendar endTime = Calendar.getInstance();
+                        endTime.set(event.getYear(), event.getMonth() - 1, event.getDay(), event.getHour() + 1, event.getMinute());
 
-                    endMillis = endTime.getTimeInMillis();
+                        endMillis = endTime.getTimeInMillis();
 
-                    ContentResolver cr = listFragment.homeActivity.getContentResolver();
-                    ContentValues values = new ContentValues();
-                    values.put(CalendarContract.Events.DTSTART, startMillis);
-                    values.put(CalendarContract.Events.DTEND, endMillis);
-                    values.put(CalendarContract.Events.TITLE, event.getName());
-                    values.put(CalendarContract.Events.DESCRIPTION, event.getDescription());
-                    values.put(CalendarContract.Events.CALENDAR_ID, calID);
-                    values.put(CalendarContract.Events.EVENT_TIMEZONE, "India");
-                    Uri uri = cr.insert(CalendarContract.Events.CONTENT_URI, values);
-                    long eventID = Long.parseLong(uri.getLastPathSegment());
-                    SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(listFragment.getContext());
-                    Integer reminderTime = Integer.parseInt(sharedPrefs.getString("reminder1","0"));
-                    if(reminderTime!=null && reminderTime !=0) {
+                        ContentResolver cr = listFragment.homeActivity.getContentResolver();
+                        ContentValues values = new ContentValues();
+                        values.put(CalendarContract.Events.DTSTART, startMillis);
+                        values.put(CalendarContract.Events.DTEND, endMillis);
+                        values.put(CalendarContract.Events.TITLE, event.getName());
+                        values.put(CalendarContract.Events.DESCRIPTION, event.getDescription());
+                        values.put(CalendarContract.Events.CALENDAR_ID, calID);
+                        values.put(CalendarContract.Events.EVENT_TIMEZONE, "India");
+                        Uri uri = cr.insert(CalendarContract.Events.CONTENT_URI, values);
+                        long eventID = Long.parseLong(uri.getLastPathSegment());
+                        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(listFragment.getContext());
+                        Integer reminderTime = Integer.parseInt(sharedPrefs.getString("reminder1", "0"));
+                        if (reminderTime != null && reminderTime != 0) {
 
-                        values = new ContentValues();
-                        values.put(CalendarContract.Reminders.MINUTES, reminderTime);
-                        values.put(CalendarContract.Reminders.EVENT_ID, eventID);
-                        values.put(CalendarContract.Reminders.METHOD, CalendarContract.Reminders.METHOD_ALERT);
-                        cr.insert(CalendarContract.Reminders.CONTENT_URI, values);
-                    }
-                    reminderTime = Integer.parseInt(sharedPrefs.getString("reminder2","0"));
-                    if(reminderTime!=null && reminderTime !=0) {
-                        values = new ContentValues();
-                        values.put(CalendarContract.Reminders.MINUTES, reminderTime);
-                        values.put(CalendarContract.Reminders.EVENT_ID, eventID);
-                        values.put(CalendarContract.Reminders.METHOD, CalendarContract.Reminders.METHOD_ALERT);
-                        cr.insert(CalendarContract.Reminders.CONTENT_URI, values);
-                    }
+                            values = new ContentValues();
+                            values.put(CalendarContract.Reminders.MINUTES, reminderTime);
+                            values.put(CalendarContract.Reminders.EVENT_ID, eventID);
+                            values.put(CalendarContract.Reminders.METHOD, CalendarContract.Reminders.METHOD_ALERT);
+                            cr.insert(CalendarContract.Reminders.CONTENT_URI, values);
+                        }
+                        reminderTime = Integer.parseInt(sharedPrefs.getString("reminder2", "0"));
+                        if (reminderTime != null && reminderTime != 0) {
+                            values = new ContentValues();
+                            values.put(CalendarContract.Reminders.MINUTES, reminderTime);
+                            values.put(CalendarContract.Reminders.EVENT_ID, eventID);
+                            values.put(CalendarContract.Reminders.METHOD, CalendarContract.Reminders.METHOD_ALERT);
+                            cr.insert(CalendarContract.Reminders.CONTENT_URI, values);
+                        }
 
-                    Log.v(TAG,"URI is "+uri);
-                }
-                else {
+                        Log.v(TAG, "URI is " + uri);
+                    } else {
                         Uri uri = CalendarContract.Events.CONTENT_URI;
 //                        String[] projection = new String[] {
 //                            CalendarContract.Calendars._ID,
@@ -135,12 +135,17 @@ public class EventsAdapter extends ArrayAdapter<Event> {
 //                            CalendarContract.Calendars.NAME,
 //                            CalendarContract.Calendars.CALENDAR_COLOR
 //                    };
-                    String [] projection = new String[]{
-                            event.getName()
-                    };
-                        listFragment.homeActivity.getContentResolver().delete(uri,CalendarContract.Events.TITLE+" LIKE ?",projection);
+                        String[] projection = new String[]{
+                                event.getName()
+                        };
+                        listFragment.homeActivity.getContentResolver().delete(uri, CalendarContract.Events.TITLE + " LIKE ?", projection);
 //                    Cursor calendarCursor = managedQuery(uri, projection, null, null, null);
 
+                    }
+                }
+                catch(Exception e){
+                    Log.e(TAG,e.getMessage().toString());
+                            Toast.makeText(listFragment.getContext(),"Some error while modifying calendar", Toast.LENGTH_SHORT).show();
                 }
                 event.setSubscribed(!event.getSubscribed());
                 if(event.getSubscribed())
