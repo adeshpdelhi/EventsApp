@@ -23,18 +23,18 @@ public class EventDetailsActivity extends AppCompatActivity {
         TextView aClub = (TextView) findViewById(R.id.eventdetail_club);
         TextView aDate = (TextView) findViewById(R.id.eventdetail_date);
         TextView atime_from = (TextView) findViewById(R.id.eventdetail_time_from);
-        TextView atime_to = (TextView) findViewById(R.id.eventdetail_time_to);
+        TextView avenue = (TextView) findViewById(R.id.eventdetail_venue);
         TextView aDescription = (TextView)findViewById(R.id.eventdetail_description);
         TextView aOrganisers = (TextView) findViewById(R.id.eventdetail_organisers);
 
         // Populate the data into the template view using the data object
         aName.setText(e.name);
         aClub.setText(e.clubs[0].getName());
-        aDate.setText(e.date);
-//        atime_from.setText(e.eventId);
-        atime_to.setText(e.venue);
-        aDescription.setText(e.getAdmins()[0].getName());
-        aOrganisers.setText(e.time);
+        aDate.setText(e.getDate());
+        avenue.setText(e.venue);
+        atime_from.setText(e.time);
+        aDescription.setText(e.getDescription());
+        aOrganisers.setText(e.getAdmins()[0].getName());
     }
     public void deleteEvent(View view){
         EventDB db = new EventDB(this);

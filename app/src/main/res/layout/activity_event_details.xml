@@ -106,15 +106,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10sp"
-            android:text="To :                        "
+            android:text="Venue :                        "
             android:layout_gravity="center"
             />
         <TextView
-            android:id="@+id/eventdetail_time_to"
+            android:id="@+id/eventdetail_venue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:hint="myclub"
+            android:hint="myvenue"
             />
     </LinearLayout>
 
@@ -158,10 +158,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:hint="myclub"
+            android:hint="organisers"
             />
     </LinearLayout>
-        <LinearLayout
+        <!-- <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right">
@@ -175,6 +175,7 @@
 
                 android:onClick="deleteEvent"/>
         </LinearLayout>
+        -->
 
     </LinearLayout>
 
