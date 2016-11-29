@@ -65,10 +65,15 @@ public class EventsAdapter extends ArrayAdapter<Event> {
 //            Log.v(TAG,event.getSubscribed().toString());
 //        else
 //            Log.v(TAG, "Null event found!");
-        if(event.getSubscribed())
+        if(event.getSubscribed()) {
             aToggleSubscription.setBackgroundColor(Color.GREEN);
-        else
+            aToggleSubscription.setText("Unsubscribe");
+
+        }
+        else{
             aToggleSubscription.setBackgroundColor(Color.RED);
+            aToggleSubscription.setText("Subscribe");
+        }
         aToggleSubscription.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 toggleSubscription(v.getContext().getApplicationContext(),event);
@@ -148,13 +153,13 @@ public class EventsAdapter extends ArrayAdapter<Event> {
                 event.setSubscribed(!event.getSubscribed());
                 if(event.getSubscribed()) {
                     aToggleSubscription.setBackgroundColor(Color.GREEN);
-                    aToggleSubscription.setText("UnSubscribe");
+                    aToggleSubscription.setText("Unsubscribe");
 
                 }
-                else
+                else{
                     aToggleSubscription.setBackgroundColor(Color.RED);
-                aToggleSubscription.setText("Subscribe");
-
+                    aToggleSubscription.setText("Subscribe");
+                }
 
             }
         });
@@ -183,7 +188,7 @@ public class EventsAdapter extends ArrayAdapter<Event> {
         return convertView;
     }
     //////////////////////////////////////////////////////////////////////////////////////////////
-    private void toggleSubscription(final Context context, Event event){
+    private void toggleSubscription(final Context context, final Event event){
 
         User user = HomeActivity.getCurrentUser();
 
@@ -201,7 +206,7 @@ public class EventsAdapter extends ArrayAdapter<Event> {
                 public void success(String str, Response response) {
                     //Dismissing the loading progressbar
     //                loading.dismiss();
-                    Toast.makeText(context, "Added notification!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "Subscribed to "+event.getName(), Toast.LENGTH_SHORT).show();
 //                    listFragment.fetchAndUpdateList();
 //                    listFragment.homeActivity.refreshUser();
 //                    listFragment.updateUserSubscriptions();
@@ -226,7 +231,7 @@ public class EventsAdapter extends ArrayAdapter<Event> {
                 public void success(String str, Response response) {
                     //Dismissing the loading progressbar
                     //                loading.dismiss();
-                    Toast.makeText(context, "Removed notification!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "Unsubscribed from "+event.getName(), Toast.LENGTH_SHORT).show();
 //                    listFragment.homeActivity.refreshUser();
 //                    listFragment.updateUserSubscriptions();
 //                    listFragment.adapter.notifyDataSetChanged();

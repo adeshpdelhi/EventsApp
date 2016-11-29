@@ -49,7 +49,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/viewAllEvents_toggle"
         android:text="T"
-        android:textSize="5sp"/>
+        android:textSize="12sp"/>
 
 
 
