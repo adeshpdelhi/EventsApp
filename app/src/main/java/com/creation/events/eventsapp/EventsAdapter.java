@@ -145,7 +145,7 @@ public class EventsAdapter extends ArrayAdapter<Event> {
                 }
                 catch(Exception e){
                     Log.e(TAG,e.getMessage().toString());
-                            Toast.makeText(listFragment.getContext(),"Some error while modifying calendar", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(listFragment.getContext(),"Please grant permission for calendar", Toast.LENGTH_SHORT).show();
                 }
                 event.setSubscribed(!event.getSubscribed());
                 if(event.getSubscribed())

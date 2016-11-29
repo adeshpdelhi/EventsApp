@@ -179,8 +179,10 @@ public class HomeActivity extends AppCompatActivity implements GoogleApiClient.O
                 return true;
             case R.id.settingsoption:
                 startActivity(new Intent(this,SettingsActivity.class));
+                return true;
             case R.id.addcluboption:
                 startActivity(new Intent(this,AddClubActivity.class));
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }

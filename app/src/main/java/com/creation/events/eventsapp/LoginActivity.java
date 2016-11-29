@@ -109,8 +109,14 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                 public void failure(RetrofitError error) {
                     //you can handle the errors here
                     Log.e(TAG,error.toString());
-                    Toast.makeText(getApplicationContext(), "Error adding user!", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(getApplicationContext(), "Error adding user!", Toast.LENGTH_SHORT).show();
                     loading.dismiss();
+                    Intent i = new Intent(getApplicationContext(),HomeActivity.class);
+                    Bundle b = new Bundle();
+                    b.putSerializable("user",user);
+                    i.putExtras(b);
+                    startActivity(i);
+                    finish();
                 }
             });
 

@@ -26,6 +26,7 @@ public class AddClubActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_club);
         mName = (EditText)findViewById(R.id.newclub_name);
         mDescription = (EditText) findViewById(R.id.newclub_description);
+        setTitle("New Club");
     }
 
     public void addClub(View view){
