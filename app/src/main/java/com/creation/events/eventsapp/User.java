@@ -28,6 +28,17 @@ public class User implements Serializable{
     private ArrayList<Event> SubscribedEvents= new ArrayList<Event>();
     @SerializedName("AdministeredEvents")
     private ArrayList<Event> AdministeredEvents= new ArrayList<Event>();
+    @SerializedName("AdministeredClubs")
+    private ArrayList<Club> AdministeredClubs= new ArrayList<Club>();
+
+    public ArrayList<Club> getAdministeredClubs() {
+        return AdministeredClubs;
+    }
+
+    public void setAdministeredClubs(ArrayList<Club> administeredClubs) {
+        AdministeredClubs = administeredClubs;
+    }
+
     public User(String name, String email){
         this.name = name;
         this.email = email;

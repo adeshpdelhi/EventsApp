@@ -41,9 +41,13 @@ public class ClubDetailsActivity extends AppCompatActivity {
         Log.e(TAG, "again");
         Boolean isAdmin = false;
         User user = HomeActivity.getCurrentUser();
-        for(int j=0;j<user.getAdministeredEvents().size();j++){
-            if (user.getAdministeredEvents().get(j).getEventId().equals(club.getClubId()))
+        Log.v(TAG, "printing original club");
+        Log.v(TAG, "Original club " + club.getClubId().toString());
+        for(int j=0;j<user.getAdministeredClubs().size();j++){
+            Log.v(TAG, "CHecking with "+user.getAdministeredClubs().get(j).getClubId());
+            if (user.getAdministeredClubs().get(j).getClubId().equals(club.getClubId()))
             {
+                Log.v(TAG, "Passed");
                 isAdmin = true;
                 break;
             }
