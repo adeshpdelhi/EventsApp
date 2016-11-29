@@ -78,7 +78,11 @@
         android:layout_height="wrap_content"
         android:onClick="addEventOpen"
         android:text="Add Event"
-        android:layout_marginEnd="@dimen/activity_horizontal_margin"/>
+        android:layout_gravity="center"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="40sp"
+            android:textColor="@android:color/white"
+            android:background="@android:color/holo_red_light"/>
     </LinearLayout>
 
 </ScrollView>
