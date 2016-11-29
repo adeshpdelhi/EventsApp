@@ -146,10 +146,15 @@ public class EventsAdapter extends ArrayAdapter<Event> {
                             Toast.makeText(listFragment.getContext(),"Please grant permission for calendar", Toast.LENGTH_SHORT).show();
                 }
                 event.setSubscribed(!event.getSubscribed());
-                if(event.getSubscribed())
+                if(event.getSubscribed()) {
                     aToggleSubscription.setBackgroundColor(Color.GREEN);
+                    aToggleSubscription.setText("UnSubscribe");
+
+                }
                 else
                     aToggleSubscription.setBackgroundColor(Color.RED);
+                aToggleSubscription.setText("Subscribe");
+
 
             }
         });
@@ -177,7 +182,9 @@ public class EventsAdapter extends ArrayAdapter<Event> {
         // Return the completed view to render on screen
         return convertView;
     }
+    //////////////////////////////////////////////////////////////////////////////////////////////
     private void toggleSubscription(final Context context, Event event){
+
         User user = HomeActivity.getCurrentUser();
 
         //Creating a rest adapter
@@ -238,4 +245,7 @@ public class EventsAdapter extends ArrayAdapter<Event> {
         }
 
     }
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
 }

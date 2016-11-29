@@ -1,15 +1,20 @@
 package com.creation.events.eventsapp;
 
+import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -43,6 +48,7 @@ import retrofit.client.Response;
  */
 public class HomeActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener, ListEventsFragment.Refresh{
     public static final String TAG = "HomeActivity";
+    private int CALENDAR_PERMISSION_CODE = 20;
     public static final String ROOT_URL = "http://192.168.58.241:3000/";
     private Toolbar toolbar;
     private TabLayout tabLayout;
@@ -52,9 +58,13 @@ public class HomeActivity extends AppCompatActivity implements GoogleApiClient.O
     public static User getCurrentUser(){
         return user;
     }
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_viewpager);
+        Log.d(TAG,"going inside take_oer");
+        take_permission();
+        Toast.makeText(this,"Gone inside take_permission",Toast.LENGTH_LONG).show();
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
                 .build();
@@ -65,18 +75,14 @@ public class HomeActivity extends AppCompatActivity implements GoogleApiClient.O
         SharedPreferences sharedPref = this.getSharedPreferences("loggedInUser", Context.MODE_PRIVATE);
         user = new User(sharedPref.getString("username",null),sharedPref.getString("email",null));
         fetchUser(user.getEmail());
-       // Log.v(TAG, "Username is "+user.getName().toString());
-//        getSupportActionBar().setTitle("Events");
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-
 //        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
         viewPager = (ViewPager) findViewById(R.id.viewpager);
-        setupViewPager(viewPager);
-
+       setupViewPager(viewPager);
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
+
     }
 
     private void setupViewPager(ViewPager viewPager) {
@@ -218,4 +224,52 @@ public class HomeActivity extends AppCompatActivity implements GoogleApiClient.O
                     }
                 });
     }
+    /////////////////////////////////////////////////////////////////////////////////////////
+
+    public void take_permission()
+    {
+        int result = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_CALENDAR);
+
+        //If permission is granted returning true
+        if (result == PackageManager.PERMISSION_GRANTED)
+        {
+            Toast.makeText(getApplicationContext(),"You already have the permission",Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        //If the app has not the permission then asking for the permission
+        Toast.makeText(getApplicationContext(),"You DO NOT have the permission",Toast.LENGTH_LONG).show();
+        requestCalendarPermission();
+    }
+    //Requesting permission
+    private void requestCalendarPermission(){
+
+        if (ActivityCompat.shouldShowRequestPermissionRationale(this,Manifest.permission.WRITE_CALENDAR)){
+            //If the user has denied the permission previously your code will come to this block
+            //Here you can explain why you need this permission
+            //Explain here why you need this permission
+        }
+
+        //And finally ask for the permission
+        ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.WRITE_CALENDAR},CALENDAR_PERMISSION_CODE);
+    }
+
+    //This method will be called when the user will tap on allow or deny
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+
+        //Checking the request code of our request
+        if(requestCode == CALENDAR_PERMISSION_CODE){
+            //If permission is granted
+            if(grantResults.length >0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                //Displaying a toast
+                Toast.makeText(this,"Permission granted now you can access calendar",Toast.LENGTH_LONG).show();
+            }else{
+                //Displaying another toast if permission is not granted
+                Toast.makeText(this,"Oops you just denied the permission",Toast.LENGTH_LONG).show();
+            }
+        }
+    }
 }
+    ////////////////////////////////////////////////////////////////////////////////////////
+
