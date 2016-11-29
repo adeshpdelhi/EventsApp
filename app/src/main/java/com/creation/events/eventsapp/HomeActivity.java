@@ -48,7 +48,7 @@ import retrofit.client.Response;
  */
 public class HomeActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener, ListEventsFragment.Refresh{
     public static final String TAG = "HomeActivity";
-    private int CALENDAR_PERMISSION_CODE = 23;
+    private int CALENDAR_PERMISSION_CODE = 20;
     public static final String ROOT_URL = "http://192.168.58.241:3000/";
     private Toolbar toolbar;
     private TabLayout tabLayout;
@@ -62,6 +62,9 @@ public class HomeActivity extends AppCompatActivity implements GoogleApiClient.O
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_viewpager);
+        Log.d(TAG,"going inside take_oer");
+        take_permission();
+        Toast.makeText(this,"Gone inside take_permission",Toast.LENGTH_LONG).show();
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
                 .build();
@@ -72,19 +75,10 @@ public class HomeActivity extends AppCompatActivity implements GoogleApiClient.O
         SharedPreferences sharedPref = this.getSharedPreferences("loggedInUser", Context.MODE_PRIVATE);
         user = new User(sharedPref.getString("username",null),sharedPref.getString("email",null));
         fetchUser(user.getEmail());
-        take_permission();
-        Log.d(TAG,"going inside take_oer");
-        Toast.makeText(this,"Gone inside take_permission",Toast.LENGTH_LONG).show();
-
-        // Log.v(TAG, "Username is "+user.getName().toString());
-//        getSupportActionBar().setTitle("Events");
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-
 //        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
         viewPager = (ViewPager) findViewById(R.id.viewpager);
-        setupViewPager(viewPager);
-
+       setupViewPager(viewPager);
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
@@ -234,10 +228,12 @@ public class HomeActivity extends AppCompatActivity implements GoogleApiClient.O
 
     public void take_permission()
     {
-        if(isCalendarAllowed()){
-            //If permission is already having then showing the toast
+        int result = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_CALENDAR);
+
+        //If permission is granted returning true
+        if (result == PackageManager.PERMISSION_GRANTED)
+        {
             Toast.makeText(getApplicationContext(),"You already have the permission",Toast.LENGTH_LONG).show();
-            //Existing the method with return
             return;
         }
 
@@ -245,19 +241,6 @@ public class HomeActivity extends AppCompatActivity implements GoogleApiClient.O
         Toast.makeText(getApplicationContext(),"You DO NOT have the permission",Toast.LENGTH_LONG).show();
         requestCalendarPermission();
     }
-
-    private boolean isCalendarAllowed() {
-        //Getting the permission status
-        int result = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_CALENDAR);
-
-        //If permission is granted returning true
-        if (result == PackageManager.PERMISSION_GRANTED)
-            return true;
-
-        //If permission is not granted returning false
-        return false;
-    }
-
     //Requesting permission
     private void requestCalendarPermission(){
 
@@ -277,10 +260,8 @@ public class HomeActivity extends AppCompatActivity implements GoogleApiClient.O
 
         //Checking the request code of our request
         if(requestCode == CALENDAR_PERMISSION_CODE){
-
             //If permission is granted
             if(grantResults.length >0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
-
                 //Displaying a toast
                 Toast.makeText(this,"Permission granted now you can access calendar",Toast.LENGTH_LONG).show();
             }else{

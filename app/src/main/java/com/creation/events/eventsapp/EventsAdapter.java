@@ -148,10 +148,15 @@ public class EventsAdapter extends ArrayAdapter<Event> {
                             Toast.makeText(listFragment.getContext(),"Please grant permission for calendar", Toast.LENGTH_SHORT).show();
                 }
                 event.setSubscribed(!event.getSubscribed());
-                if(event.getSubscribed())
+                if(event.getSubscribed()) {
                     aToggleSubscription.setBackgroundColor(Color.GREEN);
+                    aToggleSubscription.setText("UnSubscribe");
+
+                }
                 else
                     aToggleSubscription.setBackgroundColor(Color.RED);
+                aToggleSubscription.setText("Subscribe");
+
 
             }
         });
